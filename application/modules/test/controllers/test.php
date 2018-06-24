@@ -45,7 +45,6 @@ class Test extends MX_Controller {
         $test = $this->get_where_custom('test_id', $test_id);
         $this->load->module('questions');
         $questions = $this->questions->get_where_custom('test_id', $test_id)->result_array();
-
         $this->load->module('answers');
         foreach ($questions as $key => $value) {
             //      echo $key . ' ' . $value['question_id'] . '<br>';
@@ -59,11 +58,23 @@ class Test extends MX_Controller {
 
     function tests_list() {
         $this->load->module('test');
-        $data['query'] = $this->test->get('test_id')->result_array();
-        $data['rand'] = $this->test->get_rand('test_id')->result_array();
-
+        $this->load->module('questions');
+        $query = $this->test->get('test_id')->result_array();
+        foreach ($query as $key => $value) {
+            $query[$key]['count'] = $this->questions->count_where('test_id', $value['test_id']);
+        }
+        $data['query'] = $query;
         $data['view_module'] = 'test';
         $data['view_file'] = 'tests_list';
+
+        $this->load->module('templates');
+        $this->templates->user($data);
+    }
+
+    function view_test($test_id) {
+        $data['view_module'] = 'test';
+        $data['view_file'] = 'view_test';
+        $data['test_id'] = $this->uri->segment(3);
 
         $this->load->module('templates');
         $this->templates->user($data);
