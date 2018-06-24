@@ -50,7 +50,6 @@ class Questions extends MX_Controller {
         } else {
             redirect(base_url());
         }
-
         $this->load->module('templates');
         $this->templates->user($data);
     }

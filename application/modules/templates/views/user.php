@@ -337,7 +337,7 @@
                         <ul class="nav nav-tabs nav-stacked main-menu">
                             <li><a href="<?php echo base_url() . "templates/show_user" ?>"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Main</span></a></li>	
                             <li><a href="<?php echo base_url() . "test/addtest" ?>"><i class="icon-envelope"></i><span class="hidden-tablet"> Add Test </span></a></li>
-                            <li><a href="<?php echo base_url() . "test/test_list" ?>"><i class="icon-tasks"></i><span class="hidden-tablet"> View Tests</span></a></li>
+                            <li><a href="<?php echo base_url() . "test/tests_list" ?>"><i class="icon-tasks"></i><span class="hidden-tablet"> View Tests</span></a></li>
                             <li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
                             <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
                             <li>

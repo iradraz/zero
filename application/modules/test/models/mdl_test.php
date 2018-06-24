@@ -21,6 +21,12 @@ class Mdl_test extends CI_Model {
         return $query;
     }
 
+    function get_rand($order_by) {
+        $table = $this->get_table();
+        $this->db->order_by($order_by,'RANDOM');
+        $query = $this->db->get($table);
+        return $query;
+    }
     function get_with_limit($limit, $offset, $order_by) {
         $table = $this->get_table();
         $this->db->limit($limit, $offset);

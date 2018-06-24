@@ -1,5 +1,9 @@
 <?php
 
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
+//        die;
 class Test extends MX_Controller {
 
     function __construct() {
@@ -26,7 +30,7 @@ class Test extends MX_Controller {
             );
             $this->load->module('test');
             $data['insert_id'] = $this->test->_insert($data);
-             $data['query'] = $this->test->get_where($data['insert_id']);
+            $data['query'] = $this->test->get_where($data['insert_id']);
             $query = $this->test->get_where($data['insert_id']);
 
             $data['view_module'] = "test";
@@ -37,9 +41,43 @@ class Test extends MX_Controller {
         $this->templates->user($data);
     }
 
+    function sequence_test_questions($test_id) {
+        $test = $this->get_where_custom('test_id', $test_id);
+        $this->load->module('questions');
+        $questions = $this->questions->get_where_custom('test_id', $test_id)->result_array();
+
+        $this->load->module('answers');
+        foreach ($questions as $key => $value) {
+            //      echo $key . ' ' . $value['question_id'] . '<br>';
+            $answers = $this->answers->get_where_custom('question_id', $value['question_id'])->result_array();
+            foreach ($answers as $answer_key => $answer_value) {
+                $questions[$key]['answers'][$answer_key] = $answer_value;
+            }
+        }
+        return $questions; // return test questions with all it's answers
+    }
+
+    function tests_list() {
+        $this->load->module('test');
+        $data['query'] = $this->test->get('test_id')->result_array();
+        $data['rand'] = $this->test->get_rand('test_id')->result_array();
+
+        $data['view_module'] = 'test';
+        $data['view_file'] = 'tests_list';
+
+        $this->load->module('templates');
+        $this->templates->user($data);
+    }
+
     function get($order_by) {
         $this->load->model('mdl_test');
         $query = $this->mdl_test->get($order_by);
+        return $query;
+    }
+
+    function get_rand($order_by) {
+        $this->load->model('mdl_test');
+        $query = $this->mdl_test->get_rand($order_by);
         return $query;
     }
 

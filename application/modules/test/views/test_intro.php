@@ -5,7 +5,7 @@ foreach ($query->result() as $row)
 <br>
 <br><a href="<?php echo base_url('questions/addquestions/') . $row->test_id?>"> add questions</a>
 <br>show questions
-<br>generate pdf
+<br>generate mixed test
 
 <br><br>
 return
