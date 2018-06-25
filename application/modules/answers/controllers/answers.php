@@ -1,14 +1,19 @@
 <?php
 
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
+//        die;
 class Answers extends MX_Controller {
 
     function __construct() {
         parent::__construct();
     }
-    
-    function sequence_answers($data){
+
+    function sequence_answers($data) {
         
     }
+
     function get($order_by) {
         $this->load->model('mdl_answers');
         $query = $this->mdl_answers->get($order_by);
@@ -30,6 +35,12 @@ class Answers extends MX_Controller {
     function get_where_custom($col, $value) {
         $this->load->model('mdl_answers');
         $query = $this->mdl_answers->get_where_custom($col, $value);
+        return $query;
+    }
+
+    function get_where_custom_rand($col, $value) {
+        $this->load->model('mdl_answers');
+        $query = $this->mdl_answers->get_where_custom_rand($col, $value);
         return $query;
     }
 
@@ -58,7 +69,6 @@ class Answers extends MX_Controller {
         $this->load->model('mdl_answers');
         $max_id = $this->mdl_answers->get_max();
         return $max_id;
-        
     }
 
     function _custom_query($mysql_query) {

@@ -21,6 +21,13 @@ class Mdl_questions extends CI_Model {
         return $query;
     }
 
+    function get_rand($order_by) {
+        $table = $this->get_table();
+        $this->db->order_by($order_by, 'RANDOM');
+        $query = $this->db->get($table);
+        return $query;
+    }
+
     function get_with_limit($limit, $offset, $order_by) {
         $table = $this->get_table();
         $this->db->limit($limit, $offset);
@@ -39,6 +46,14 @@ class Mdl_questions extends CI_Model {
     function get_where_custom($col, $value) {
         $table = $this->get_table();
         $this->db->where($col, $value);
+        $query = $this->db->get($table);
+        return $query;
+    }
+
+    function get_where_custom_rand($col, $value) {
+        $table = $this->get_table();
+        $this->db->where($col, $value);
+        $this->db->order_by($col, 'RANDOM');
         $query = $this->db->get($table);
         return $query;
     }

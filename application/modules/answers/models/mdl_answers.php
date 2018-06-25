@@ -43,6 +43,14 @@ class Mdl_answers extends CI_Model {
         return $query;
     }
 
+    function get_where_custom_rand($col, $value) {
+        $table = $this->get_table();
+        $this->db->where($col, $value);
+        $this->db->order_by($col, 'RANDOM');
+        $query = $this->db->get($table);
+        return $query;
+    }
+
     function _insert($data) {
         $table = $this->get_table();
         $this->db->insert($table, $data);

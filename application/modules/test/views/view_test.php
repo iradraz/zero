@@ -1,4 +1,5 @@
 <h1>Question of the test - Zero test</h1>
+<br>
 <?php
 $this->load->module('test');
 $sequence = $this->test->sequence_test_questions($test_id);
@@ -10,3 +11,11 @@ foreach ($sequence as $x => $x_value) {
     }
     echo '</ol>';
 }
+?>
+<br>
+<div class="2nd-section">
+    <h4>Test Actions:</h4>
+    <a href="<?php echo base_url('test/generatePDF/') . $test_id; ?>">Generate PDF</a>
+    <br>
+    <a href="<?php echo base_url('test/mix_test/') . $test_id; ?>">Mix Test</a>
+</div>

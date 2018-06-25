@@ -20,8 +20,6 @@ class Test extends MX_Controller {
         if ($this->form_validation->run() == FALSE) {
             $data['view_module'] = "test";
             $data['view_file'] = "addtest";
-            $this->load->module('templates');
-            $this->templates->user($data);
         } else {
 
             // database manipulation add goes here
@@ -31,7 +29,6 @@ class Test extends MX_Controller {
             $this->load->module('test');
             $data['insert_id'] = $this->test->_insert($data);
             $data['query'] = $this->test->get_where($data['insert_id']);
-            $query = $this->test->get_where($data['insert_id']);
 
             $data['view_module'] = "test";
             $data['view_file'] = "test_intro";
@@ -43,6 +40,7 @@ class Test extends MX_Controller {
 
     function sequence_test_questions($test_id) {
         $test = $this->get_where_custom('test_id', $test_id);
+
         $this->load->module('questions');
         $questions = $this->questions->get_where_custom('test_id', $test_id)->result_array();
         $this->load->module('answers');
@@ -54,6 +52,21 @@ class Test extends MX_Controller {
             }
         }
         return $questions; // return test questions with all it's answers
+    }
+
+    function mix_test_questions($test_id) {
+        $test = $this->get_where_custom('test_id', $test_id);
+
+        $this->load->module('questions');
+        $questions = $this->questions->get_where_custom_rand('test_id', $test_id)->result_array();
+        $this->load->module('answers');
+        foreach ($questions as $key => $value) {
+            $answers = $this->answers->get_where_custom_rand('question_id', $value['question_id'])->result_array();
+            foreach ($answers as $answer_key => $answer_value) {
+                $questions[$key]['answers'][$answer_key] = $answer_value;
+            }
+        }
+        return $questions;
     }
 
     function tests_list() {
@@ -74,7 +87,16 @@ class Test extends MX_Controller {
     function view_test($test_id) {
         $data['view_module'] = 'test';
         $data['view_file'] = 'view_test';
-        $data['test_id'] = $this->uri->segment(3);
+        $data['test_id'] = $test_id;
+
+        $this->load->module('templates');
+        $this->templates->user($data);
+    }
+
+    function mix_test($test_id) {
+        $data['view_module'] = 'test';
+        $data['view_file'] = 'mix_test';
+        $data['test_id'] = $test_id;
 
         $this->load->module('templates');
         $this->templates->user($data);

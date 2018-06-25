@@ -1,6 +1,9 @@
 <?php
 
-//echo '<pre>'; print_r($data); echo '</pre>'; debugging array
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
+//        die;
 class Questions extends MX_Controller {
 
     function __construct() {
@@ -21,8 +24,6 @@ class Questions extends MX_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $data['view_module'] = "questions";
                 $data['view_file'] = "addquestions";
-                $this->load->module('templates');
-                $this->templates->user($data);
             } else { // form_validation sucess:
                 $data = $this->input->post(['test_id', 'question_asked'], TRUE);
                 $this->load->module('questions');
@@ -60,6 +61,12 @@ class Questions extends MX_Controller {
         return $query;
     }
 
+    function get_rand($order_by) {
+        $this->load->model('mdl_questions');
+        $query = $this->mdl_test->get_rand($order_by);
+        return $query;
+    }
+
     function get_with_limit($limit, $offset, $order_by) {
         $this->load->model('mdl_questions');
         $query = $this->mdl_questions->get_with_limit($limit, $offset, $order_by);
@@ -75,6 +82,12 @@ class Questions extends MX_Controller {
     function get_where_custom($col, $value) {
         $this->load->model('mdl_questions');
         $query = $this->mdl_questions->get_where_custom($col, $value);
+        return $query;
+    }
+
+    function get_where_custom_rand($col, $value) {
+        $this->load->model('mdl_questions');
+        $query = $this->mdl_questions->get_where_custom_rand($col, $value);
         return $query;
     }
 
