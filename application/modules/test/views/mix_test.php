@@ -34,8 +34,6 @@
             text-align: center;
         }
     </style>
-</head>
-<body>
 
     <h2>Answer key table:</h2>
 
@@ -48,15 +46,14 @@
             <tr>
                 <td><?php echo ($x + 1); ?></td>
                 <?php
-                $counter=1;
+                $counter = 1;
                 foreach ($x_value['answers'] as $answer_key => $answer_array) {
-                    
+
                     if ($answer_array['answer_correct'] == 1) {
-                        echo '<td>' .$counter . '</td>';
-                        $counter=1;
+                        echo '<td>' . $counter . '</td>';
+                        $counter = 1;
                     }
                     $counter++;
-                    
                 }
                 ?>
             </tr>
@@ -64,7 +61,6 @@
         }
         ?>
     </table>
-
 </div>
 
 <div class = "2nd-section">

@@ -102,6 +102,12 @@ class Test extends MX_Controller {
         $this->templates->user($data);
     }
 
+    function generatePDF() {
+        $data['test_id']= $this->uri->segment(3);
+        $this->load->library('Pdf');
+        $this->load->view('makepdf',$data);
+    }
+
     function get($order_by) {
         $this->load->model('mdl_test');
         $query = $this->mdl_test->get($order_by);

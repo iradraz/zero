@@ -9,6 +9,14 @@
         });
     });
 </script>
+<style>
+    ol,h2{
+        direction:rtl;
+    }
+    ol{
+        padding-right: 20px;
+    }
+</style>
 <h1>Add question to test</h1>
 <form action="<?php echo base_url('questions/addquestions/') . $test_id; ?>" method="post">
     Question #: <textarea  col="15" row="3" name="question_asked"></textarea><br>
