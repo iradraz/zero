@@ -1,6 +1,5 @@
 <?php
-
-//        echo '<pre>';
+//        echoecho '<pre>';
 //        print_r($data);
 //        echo '</pre>';
 //        die;
@@ -9,7 +8,9 @@ class Questions extends MX_Controller {
     function __construct() {
         parent::__construct();
     }
-
+    function testingtesting(){
+        
+    }
     function addquestions() {
         $this->load->module('test');
         $number = $this->test->count_where('test_id', $this->uri->segment(3)); // avoid non-available test_id
@@ -29,7 +30,7 @@ class Questions extends MX_Controller {
                 $this->load->module('questions');
                 $question_id = $this->questions->_insert($data);
                 $this->load->module('answers');
-
+                
                 $answer = array_filter($this->input->post(['question_id', 'answer1', 'answer2', 'answer3', 'answer4', 'answer5', 'answer6'], TRUE)); //sequence filtered answers into $answers
                 $counter = 1;
                 foreach ($answer as $key) {

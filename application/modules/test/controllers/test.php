@@ -58,7 +58,7 @@ class Test extends MX_Controller {
         $test = $this->get_where_custom('test_id', $test_id);
 
         $this->load->module('questions');
-        $questions = $this->questions->get_where_custom_rand('test_id', $test_id)->result_array();
+        $questions = $this->questions->get_where_custom('test_id', $test_id)->result_array();
         $this->load->module('answers');
         foreach ($questions as $key => $value) {
             $answers = $this->answers->get_where_custom_rand('question_id', $value['question_id'])->result_array();

@@ -65,5 +65,5 @@
 
 <div class = "2nd-section">
     <h4>Test Actions:</h4>
-    <a href = "<?php echo base_url('test/generatePDF/') . $test_id; ?>">Generate PDF</a>
+    <a href = "<?php echo base_url('test/generatePDF/') . $test_id; ?>" target="_blank">Generate PDF</a>
 </div>
