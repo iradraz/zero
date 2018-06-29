@@ -8,9 +8,7 @@ class Questions extends MX_Controller {
     function __construct() {
         parent::__construct();
     }
-    function testingtesting(){
-        
-    }
+
     function addquestions() {
         $this->load->module('test');
         $number = $this->test->count_where('test_id', $this->uri->segment(3)); // avoid non-available test_id
